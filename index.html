@@ -1304,6 +1304,17 @@ async function doConnect(){
 
   try{
     _Bd=await navigator.bluetooth.requestDevice({
+      _Bd.addEventListener("gattserverdisconnected", (event) => {
+  console.warn("[ble] disconnected:", event);
+
+  state.connected = false;
+
+  toast("Scooter disconnected", "err");
+
+  showDebug("DISCONNECT: GATT server dropped connection");
+
+  show("sec-connect");
+});
       filters:[
         {services:["86531001-43e6-47b7-9cb0-5fc21d4ae340"]},
         {services:["00001001-0000-1000-8000-00805f9b34fb"]},
