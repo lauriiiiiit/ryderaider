@@ -1509,16 +1509,21 @@ window.doLogout=doLogout;
 window.doCommand=doCommand;
 window.doRefreshStatus=doRefreshStatus;
 document.addEventListener("DOMContentLoaded", function () {
-  setTimeout(function () {
-    // hide all sections
+(function forceConnectScreen(){
+  function apply(){
     document.querySelectorAll(".section").forEach(s => {
       s.classList.remove("visible");
     });
 
-    // show connect screen
-    document.getElementById("sec-connect").classList.add("visible");
-  }, 50);
-});
+    var el = document.getElementById("sec-connect");
+    if (el) el.classList.add("visible");
+  }
+
+  apply();
+
+  // keep enforcing in case something overrides it
+  setInterval(apply, 200);
+})();
 })(this,void 0,null);
 </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fb17cbbad41c6b0',t:'MTc3ODY3MzQ2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
